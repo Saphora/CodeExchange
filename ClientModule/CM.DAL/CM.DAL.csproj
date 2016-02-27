@@ -78,10 +78,15 @@
     <Compile Include="DataManager\LocationTypeMetaManager.cs">
       <DependentUpon>DataManager.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\DataContext.Context.cs">
+    <Compile Include="EntityModel\Context.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataContext.Context.tt</DependentUpon>
+      <DependentUpon>Context.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\EntityModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -95,9 +100,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DataManager.cs</LastGenOutput>
     </Content>
-    <Content Include="EntityModel\DataContext.Context.tt">
+    <Content Include="EntityModel\Context.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DataContext.Context.cs</LastGenOutput>
+      <LastGenOutput>Context.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityModel\Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Context.cs</LastGenOutput>
     </Content>
     <Content Include="EntityModel\EntityModel.edmx.sql" />
   </ItemGroup>
