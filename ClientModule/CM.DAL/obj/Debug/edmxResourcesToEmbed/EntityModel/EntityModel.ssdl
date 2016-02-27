@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="ClientMetas" EntityType="Model.Store.ClientMetas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BusinessContactMetas" EntityType="Model.Store.BusinessContactMetas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocationMetas" EntityType="Model.Store.LocationMetas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocationTypeMetas" EntityType="Model.Store.LocationTypeMetas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocationMetas_Location" EntityType="Model.Store.LocationMetas_Location" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocationTypeMetas_LocationType" EntityType="Model.Store.LocationTypeMetas_LocationType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientMetas_Client" EntityType="Model.Store.ClientMetas_Client" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BusinessContactMetas_BusinessContact" EntityType="Model.Store.BusinessContactMetas_BusinessContact" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientLocation" EntityType="Model.Store.ClientLocation" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="LocationLocationType" Association="Model.Store.LocationLocationType">
+      <End Role="Location" EntitySet="LocationMetas_Location" />
+      <End Role="LocationType" EntitySet="LocationTypeMetas_LocationType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientLocation_Client" Association="Model.Store.FK_ClientLocation_Client">
+      <End Role="Client" EntitySet="ClientMetas_Client" />
+      <End Role="ClientLocation" EntitySet="ClientLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientLocation_Location" Association="Model.Store.FK_ClientLocation_Location">
+      <End Role="Location" EntitySet="LocationMetas_Location" />
+      <End Role="ClientLocation" EntitySet="ClientLocation" />
+    </AssociationSet>
+    <AssociationSet Name="ClientBusinnessContact" Association="Model.Store.ClientBusinnessContact">
+      <End Role="Client" EntitySet="ClientMetas_Client" />
+      <End Role="BusinnessContact" EntitySet="BusinessContactMetas_BusinessContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_inherits_LocationMeta" Association="Model.Store.FK_Location_inherits_LocationMeta">
+      <End Role="LocationMeta" EntitySet="LocationMetas" />
+      <End Role="Location" EntitySet="LocationMetas_Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationType_inherits_LocationTypeMeta" Association="Model.Store.FK_LocationType_inherits_LocationTypeMeta">
+      <End Role="LocationTypeMeta" EntitySet="LocationTypeMetas" />
+      <End Role="LocationType" EntitySet="LocationTypeMetas_LocationType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Client_inherits_ClientMeta" Association="Model.Store.FK_Client_inherits_ClientMeta">
+      <End Role="ClientMeta" EntitySet="ClientMetas" />
+      <End Role="Client" EntitySet="ClientMetas_Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessContact_inherits_BusinessMeta" Association="Model.Store.FK_BusinessContact_inherits_BusinessMeta">
+      <End Role="BusinessMeta" EntitySet="BusinessContactMetas" />
+      <End Role="BusinessContact" EntitySet="BusinessContactMetas_BusinessContact" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ClientMetas">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ClientCreateDate" Type="bigint" Nullable="false" />
+    <Property Name="ClientAuthorID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClientRowVersion" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessContactMetas">
+    <Key>
+      <PropertyRef Name="BusinessContactID" />
+    </Key>
+    <Property Name="BusinessContactID" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessMetaCreateDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BusinessMetaAuthorID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BusinessMetaRowVersion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationMetas">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LocationCreateDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationAuthorID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationRowVersion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationTypeMetas">
+    <Key>
+      <PropertyRef Name="LocationTypeID" />
+    </Key>
+    <Property Name="LocationTypeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LocationTypeAuthorID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationTypeCreateDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationTypeRowVersion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationMetas_Location">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationZip" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationCountry" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationPhone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationWebsite" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationImageFileName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationLat" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationLong" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LocationType_LocationTypeID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationTypeMetas_LocationType">
+    <Key>
+      <PropertyRef Name="LocationTypeID" />
+    </Key>
+    <Property Name="LocationTypeName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationTypeID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientMetas_Client">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClientPhone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClientEmail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClientWebsite" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClientLogoFileName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClientID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessContactMetas_BusinessContact">
+    <Key>
+      <PropertyRef Name="BusinessContactID" />
+    </Key>
+    <Property Name="BCGivenName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BCSurName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BCEmail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BCPhone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BCWebsite" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClientClientID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BusinessContactID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientLocation">
+    <Key>
+      <PropertyRef Name="ClientLocation_Location_ClientID" />
+      <PropertyRef Name="Locations_LocationID" />
+    </Key>
+    <Property Name="ClientLocation_Location_ClientID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Locations_LocationID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="LocationLocationType">
+    <End Role="Location" Type="Model.Store.LocationMetas_Location" Multiplicity="*" />
+    <End Role="LocationType" Type="Model.Store.LocationTypeMetas_LocationType" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="LocationType">
+        <PropertyRef Name="LocationTypeID" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="LocationType_LocationTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientBusinnessContact">
+    <End Role="Client" Type="Model.Store.ClientMetas_Client" Multiplicity="1" />
+    <End Role="BusinnessContact" Type="Model.Store.BusinessContactMetas_BusinessContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="BusinnessContact">
+        <PropertyRef Name="ClientClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientLocation_Client">
+    <End Role="Client" Type="Model.Store.ClientMetas_Client" Multiplicity="1" />
+    <End Role="ClientLocation" Type="Model.Store.ClientLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="ClientLocation">
+        <PropertyRef Name="ClientLocation_Location_ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientLocation_Location">
+    <End Role="ClientLocation" Type="Model.Store.ClientLocation" Multiplicity="*" />
+    <End Role="Location" Type="Model.Store.LocationMetas_Location" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationID" />
+      </Principal>
+      <Dependent Role="ClientLocation">
+        <PropertyRef Name="Locations_LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_inherits_LocationMeta">
+    <End Role="LocationMeta" Type="Model.Store.LocationMetas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Location" Type="Model.Store.LocationMetas_Location" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="LocationMeta">
+        <PropertyRef Name="LocationID" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationType_inherits_LocationTypeMeta">
+    <End Role="LocationTypeMeta" Type="Model.Store.LocationTypeMetas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LocationType" Type="Model.Store.LocationTypeMetas_LocationType" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="LocationTypeMeta">
+        <PropertyRef Name="LocationTypeID" />
+      </Principal>
+      <Dependent Role="LocationType">
+        <PropertyRef Name="LocationTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Client_inherits_ClientMeta">
+    <End Role="ClientMeta" Type="Model.Store.ClientMetas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Client" Type="Model.Store.ClientMetas_Client" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ClientMeta">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessContact_inherits_BusinessMeta">
+    <End Role="BusinessMeta" Type="Model.Store.BusinessContactMetas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BusinessContact" Type="Model.Store.BusinessContactMetas_BusinessContact" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessMeta">
+        <PropertyRef Name="BusinessContactID" />
+      </Principal>
+      <Dependent Role="BusinessContact">
+        <PropertyRef Name="BusinessContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

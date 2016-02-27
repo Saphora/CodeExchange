@@ -1,0 +1,5 @@
+C:\Projects\SecretView\ClientModule\CM.Shared\bin\Debug\CM.Shared.dll
+C:\Projects\SecretView\ClientModule\CM.Shared\bin\Debug\CM.Shared.pdb
+C:\Projects\SecretView\ClientModule\CM.Shared\obj\Debug\CM.Shared.csprojResolveAssemblyReference.cache
+C:\Projects\SecretView\ClientModule\CM.Shared\obj\Debug\CM.Shared.dll
+C:\Projects\SecretView\ClientModule\CM.Shared\obj\Debug\CM.Shared.pdb

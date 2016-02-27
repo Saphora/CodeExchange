@@ -1,0 +1,5 @@
+C:\Projects\SecretView\ClientModule\CM.Interfaces\bin\Debug\CM.Interfaces.dll
+C:\Projects\SecretView\ClientModule\CM.Interfaces\bin\Debug\CM.Interfaces.pdb
+C:\Projects\SecretView\ClientModule\CM.Interfaces\obj\Debug\CM.Interfaces.csprojResolveAssemblyReference.cache
+C:\Projects\SecretView\ClientModule\CM.Interfaces\obj\Debug\CM.Interfaces.dll
+C:\Projects\SecretView\ClientModule\CM.Interfaces\obj\Debug\CM.Interfaces.pdb

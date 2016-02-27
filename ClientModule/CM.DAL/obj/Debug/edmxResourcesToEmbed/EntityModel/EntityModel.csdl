@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EntityModelCS" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ClientMetas" EntityType="Model.ClientMeta" />
+    <EntitySet Name="BusinessContactMetas" EntityType="Model.BusinessMeta" />
+    <EntitySet Name="LocationMetas" EntityType="Model.LocationMeta" />
+    <EntitySet Name="LocationTypeMetas" EntityType="Model.LocationTypeMeta" />
+    <AssociationSet Name="LocationLocationType" Association="Model.LocationLocationType">
+      <End Role="Location" EntitySet="LocationMetas" />
+      <End Role="LocationType" EntitySet="LocationTypeMetas" />
+    </AssociationSet>
+    <AssociationSet Name="ClientLocation" Association="Model.ClientLocation">
+      <End Role="Client" EntitySet="ClientMetas" />
+      <End Role="Location" EntitySet="LocationMetas" />
+    </AssociationSet>
+    <AssociationSet Name="ClientBusinnessContact" Association="Model.ClientBusinnessContact">
+      <End Role="Client" EntitySet="ClientMetas" />
+      <End Role="BusinnessContact" EntitySet="BusinessContactMetas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BusinessContact" BaseType="Model.BusinessMeta">
+    <Property Name="BCGivenName" Type="String" Nullable="false" />
+    <Property Name="BCSurName" Type="String" Nullable="false" />
+    <Property Name="BCEmail" Type="String" Nullable="false" />
+    <Property Name="BCPhone" Type="String" Nullable="false" />
+    <Property Name="BCWebsite" Type="String" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientBusinnessContact" FromRole="BusinnessContact" ToRole="Client" />
+    <Property Name="ClientClientID" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Client" BaseType="Model.ClientMeta">
+    <Property Name="ClientName" Type="String" Nullable="false" />
+    <Property Name="ClientPhone" Type="String" Nullable="false" />
+    <Property Name="ClientEmail" Type="String" Nullable="false" />
+    <Property Name="ClientWebsite" Type="String" Nullable="false" />
+    <Property Name="ClientLogoFileName" Type="String" Nullable="false" />
+    <NavigationProperty Name="Locations" Relationship="Model.ClientLocation" FromRole="Client" ToRole="Location" />
+    <NavigationProperty Name="BusinnessContacts" Relationship="Model.ClientBusinnessContact" FromRole="Client" ToRole="BusinnessContact" />
+  </EntityType>
+  <EntityType Name="ClientMeta">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Name="ClientCreateDate" Type="Int64" Nullable="false" />
+    <Property Name="ClientAuthorID" Type="String" Nullable="false" />
+    <Property Name="ClientRowVersion" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessMeta">
+    <Key>
+      <PropertyRef Name="BusinessContactID" />
+    </Key>
+    <Property Name="BusinessContactID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BusinessMetaCreateDate" Type="String" Nullable="false" />
+    <Property Name="BusinessMetaAuthorID" Type="String" Nullable="false" />
+    <Property Name="BusinessMetaRowVersion" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationMeta">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Name="LocationCreateDate" Type="String" Nullable="false" />
+    <Property Name="LocationAuthorID" Type="String" Nullable="false" />
+    <Property Name="LocationRowVersion" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location" BaseType="Model.LocationMeta">
+    <Property Name="LocationName" Type="String" Nullable="false" />
+    <Property Name="LocationAddress" Type="String" Nullable="false" />
+    <Property Name="LocationZip" Type="String" Nullable="false" />
+    <Property Name="LocationCountry" Type="String" Nullable="false" />
+    <Property Name="LocationPhone" Type="String" Nullable="false" />
+    <Property Name="LocationWebsite" Type="String" Nullable="false" />
+    <Property Name="LocationImageFileName" Type="String" Nullable="false" />
+    <Property Name="LocationLat" Type="String" Nullable="false" />
+    <Property Name="LocationLong" Type="String" Nullable="false" />
+    <NavigationProperty Name="LocationType" Relationship="Model.LocationLocationType" FromRole="Location" ToRole="LocationType" />
+  </EntityType>
+  <EntityType Name="LocationTypeMeta">
+    <Key>
+      <PropertyRef Name="LocationTypeID" />
+    </Key>
+    <Property Name="LocationTypeID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Name="LocationTypeAuthorID" Type="String" Nullable="false" />
+    <Property Name="LocationTypeCreateDate" Type="String" Nullable="false" />
+    <Property Name="LocationTypeRowVersion" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationType" BaseType="Model.LocationTypeMeta">
+    <Property Name="LocationTypeName" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="LocationLocationType">
+    <End Type="Model.Location" Role="Location" Multiplicity="1" />
+    <End Type="Model.LocationType" Role="LocationType" Multiplicity="1" />
+  </Association>
+  <Association Name="ClientLocation">
+    <End Type="Model.Client" Role="Client" Multiplicity="*" />
+    <End Type="Model.Location" Role="Location" Multiplicity="*" />
+  </Association>
+  <Association Name="ClientBusinnessContact">
+    <End Type="Model.Client" Role="Client" Multiplicity="1" />
+    <End Type="Model.BusinessContact" Role="BusinnessContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="BusinnessContact">
+        <PropertyRef Name="ClientClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{435FE353-086E-46C4-8393-0E559A9C73F2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CM.DAL</RootNamespace>
+    <AssemblyName>CM.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.Composition.registration" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataManager\BusinessContactManager.cs">
+      <DependentUpon>DataManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataManager\BusinessMetaManager.cs">
+      <DependentUpon>DataManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataManager\ClientManager.cs">
+      <DependentUpon>DataManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataManager\ClientMetaManager.cs">
+      <DependentUpon>DataManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataManager\DataManager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataManager\LocationManager.cs">
+      <DependentUpon>DataManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataManager\LocationMetaManager.cs">
+      <DependentUpon>DataManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataManager\LocationTypeManager.cs">
+      <DependentUpon>DataManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataManager\LocationTypeMetaManager.cs">
+      <DependentUpon>DataManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\DataContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataManager\DataManager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataManager.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityModel\DataContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityModel\EntityModel.edmx.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="EntityModel\EntityModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="EntityModel\EntityModel.edmx.diagram">
+      <DependentUpon>EntityModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CM.Interfaces\CM.Interfaces.csproj">
+      <Project>{fc24dee7-43ec-4149-824b-32208b2b07b4}</Project>
+      <Name>CM.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CM.Shared\CM.Shared.csproj">
+      <Project>{4f45e107-f530-47f8-8409-00d487b4d967}</Project>
+      <Name>CM.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

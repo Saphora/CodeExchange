@@ -1,0 +1,5 @@
+C:\Projects\SecretView\ClientModule\CM.BL\bin\Debug\CM.BL.dll
+C:\Projects\SecretView\ClientModule\CM.BL\bin\Debug\CM.BL.pdb
+C:\Projects\SecretView\ClientModule\CM.BL\obj\Debug\CM.BL.csprojResolveAssemblyReference.cache
+C:\Projects\SecretView\ClientModule\CM.BL\obj\Debug\CM.BL.dll
+C:\Projects\SecretView\ClientModule\CM.BL\obj\Debug\CM.BL.pdb

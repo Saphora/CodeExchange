@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="EntityModelCS">
+    <EntitySetMapping Name="ClientMetas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ClientMeta)">
+        <MappingFragment StoreEntitySet="ClientMetas">
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="ClientCreateDate" ColumnName="ClientCreateDate" />
+          <ScalarProperty Name="ClientAuthorID" ColumnName="ClientAuthorID" />
+          <ScalarProperty Name="ClientRowVersion" ColumnName="ClientRowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Client)">
+        <MappingFragment StoreEntitySet="ClientMetas_Client">
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+          <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
+          <ScalarProperty Name="ClientWebsite" ColumnName="ClientWebsite" />
+          <ScalarProperty Name="ClientLogoFileName" ColumnName="ClientLogoFileName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessContactMetas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.BusinessMeta)">
+        <MappingFragment StoreEntitySet="BusinessContactMetas">
+          <ScalarProperty Name="BusinessContactID" ColumnName="BusinessContactID" />
+          <ScalarProperty Name="BusinessMetaCreateDate" ColumnName="BusinessMetaCreateDate" />
+          <ScalarProperty Name="BusinessMetaAuthorID" ColumnName="BusinessMetaAuthorID" />
+          <ScalarProperty Name="BusinessMetaRowVersion" ColumnName="BusinessMetaRowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model.BusinessContact)">
+        <MappingFragment StoreEntitySet="BusinessContactMetas_BusinessContact">
+          <ScalarProperty Name="BusinessContactID" ColumnName="BusinessContactID" />
+          <ScalarProperty Name="BCGivenName" ColumnName="BCGivenName" />
+          <ScalarProperty Name="BCSurName" ColumnName="BCSurName" />
+          <ScalarProperty Name="BCEmail" ColumnName="BCEmail" />
+          <ScalarProperty Name="BCPhone" ColumnName="BCPhone" />
+          <ScalarProperty Name="BCWebsite" ColumnName="BCWebsite" />
+          <ScalarProperty Name="ClientClientID" ColumnName="ClientClientID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocationMetas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.LocationMeta)">
+        <MappingFragment StoreEntitySet="LocationMetas">
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="LocationCreateDate" ColumnName="LocationCreateDate" />
+          <ScalarProperty Name="LocationAuthorID" ColumnName="LocationAuthorID" />
+          <ScalarProperty Name="LocationRowVersion" ColumnName="LocationRowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Location)">
+        <MappingFragment StoreEntitySet="LocationMetas_Location">
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="LocationAddress" ColumnName="LocationAddress" />
+          <ScalarProperty Name="LocationZip" ColumnName="LocationZip" />
+          <ScalarProperty Name="LocationCountry" ColumnName="LocationCountry" />
+          <ScalarProperty Name="LocationPhone" ColumnName="LocationPhone" />
+          <ScalarProperty Name="LocationWebsite" ColumnName="LocationWebsite" />
+          <ScalarProperty Name="LocationImageFileName" ColumnName="LocationImageFileName" />
+          <ScalarProperty Name="LocationLat" ColumnName="LocationLat" />
+          <ScalarProperty Name="LocationLong" ColumnName="LocationLong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocationTypeMetas">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.LocationTypeMeta)">
+        <MappingFragment StoreEntitySet="LocationTypeMetas">
+          <ScalarProperty Name="LocationTypeID" ColumnName="LocationTypeID" />
+          <ScalarProperty Name="LocationTypeAuthorID" ColumnName="LocationTypeAuthorID" />
+          <ScalarProperty Name="LocationTypeCreateDate" ColumnName="LocationTypeCreateDate" />
+          <ScalarProperty Name="LocationTypeRowVersion" ColumnName="LocationTypeRowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model.LocationType)">
+        <MappingFragment StoreEntitySet="LocationTypeMetas_LocationType">
+          <ScalarProperty Name="LocationTypeID" ColumnName="LocationTypeID" />
+          <ScalarProperty Name="LocationTypeName" ColumnName="LocationTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="LocationLocationType" TypeName="Model.LocationLocationType" StoreEntitySet="LocationMetas_Location">
+      <EndProperty Name="LocationType">
+        <ScalarProperty Name="LocationTypeID" ColumnName="LocationType_LocationTypeID" />
+      </EndProperty>
+      <EndProperty Name="Location">
+        <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientLocation" TypeName="Model.ClientLocation" StoreEntitySet="ClientLocation">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="ClientID" ColumnName="ClientLocation_Location_ClientID" />
+      </EndProperty>
+      <EndProperty Name="Location">
+        <ScalarProperty Name="LocationID" ColumnName="Locations_LocationID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
